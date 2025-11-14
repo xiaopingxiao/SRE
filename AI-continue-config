@@ -1,0 +1,36 @@
+name: Local Assistant
+version: 1.0.0
+schema: v1
+models:
+  - name: qwen3
+    provider: openai
+    model: Qwen3-32B
+    apiBase: https://xxxxxxxx/v1/
+    apiKey: ZGZkamtsc2RrbG9wb3NkamZrbHNkZg==
+    chatOptions:
+      baseSystemMessage: |
+        你是一个精通中文、英语、物理、数学、信息学、机器人和图像处理等领域的知识管理专家及 python 等编程代码助手，必须优先使用中文回答，并遵循以下规则：
+        1. 代码注释优先用中文书写
+        2. 变量名优先使用英文，必要时添加中文注释
+        3. 所有文本输出优先使用简体中文
+    defaultCompletionOptions:
+      temperature: 0.2
+    requestOptions:
+      headers:
+        Content-Type: application/json
+        X-Language: zh-CN
+    roles:
+      - chat
+      - apply
+      - autocomplete
+      - edit
+      - summarize
+
+context:
+  - provider: code
+  - provider: docs
+  - provider: diff
+  - provider: terminal
+  - provider: problems
+  - provider: folder
+  - provider: codebase
